@@ -1,5 +1,5 @@
 /**
- * This is intended to be a basic starting point for linting in the Blues Stack.
+ * This is intended to be a basic starting point for linting in your app.
  * It relies on recommended configs out of the box for simplicity, but you can
  * and should modify this configuration to best suit your team's needs.
  */
@@ -19,6 +19,7 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
+  ignorePatterns: ["!**/.server", "!**/.client"],
 
   // Base config
   extends: ["eslint:recommended"],
@@ -44,6 +45,9 @@ module.exports = {
           { name: "Link", linkAttribute: "to" },
           { name: "NavLink", linkAttribute: "to" },
         ],
+        "import/resolver": {
+          typescript: {},
+        },
       },
       rules: {
         "react/jsx-no-leaked-render": [
@@ -118,16 +122,9 @@ module.exports = {
       },
     },
 
-    // Cypress
-    {
-      files: ["cypress/**/*.ts"],
-      plugins: ["cypress"],
-      extends: ["plugin:cypress/recommended", "prettier"],
-    },
-
     // Node
     {
-      files: [".eslintrc.js", "mocks/**/*.js"],
+      files: [".eslintrc.cjs"],
       env: {
         node: true,
       },
